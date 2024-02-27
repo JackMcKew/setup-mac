@@ -94,3 +94,7 @@ gh auth login
 
 # For M1 macs
 brew install battery
+
+# For removing .DS_Store from all git
+echo .DS_Store >> ~/.gitignore_global
+git config --global core.excludesfile ~/.gitignore_global
