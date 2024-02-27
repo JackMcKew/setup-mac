@@ -91,3 +91,6 @@ fi
 echo "Installing gh..."
 brew install gh
 gh auth login
+
+# For M1 macs
+brew install battery
