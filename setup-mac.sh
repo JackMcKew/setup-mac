@@ -96,6 +96,7 @@ gh auth login
 brew install battery
 
 # For removing .DS_Store from all git
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true
 echo .DS_Store >> ~/.gitignore_global
 echo ".DS_Store" >> ~/.gitignore_global
 echo "._.DS_Store" >> ~/.gitignore_global
