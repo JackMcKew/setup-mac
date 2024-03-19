@@ -103,3 +103,22 @@ echo "._.DS_Store" >> ~/.gitignore_global
 echo "**/.DS_Store" >> ~/.gitignore_global
 echo "**/._.DS_Store" >> ~/.gitignore_global
 git config --global core.excludesfile ~/.gitignore_global
+
+# Fuzzy finding
+brew install fzf
+
+klogs() {
+  pod="$(kubectl get po -o wide --namespace=$1|tail -n+2|fzf -n1 --reverse --tac --preview='kubectl logs --tail=20 --all-containers=true {1}' --preview-window=down:50%:hidden --bind=ctrl-p:toggle-preview --header="^P: Preview Logs"|awk '{print $1}')"
+  if [[ -n $pod ]]; then
+    echo $pod
+    # kubectl logs --all-containers=true $pod
+  fi
+}
+
+kdelete() {
+  pod="$(kubectl get po -o wide --namespace=$1|tail -n+2|fzf -n1 --reverse --tac --preview='kubectl logs --tail=20 --all-containers=true {1}' --preview-window=down:50%:hidden --bind=ctrl-p:toggle-preview --header="^P: Preview Logs"|awk '{print $1}')"
+  if [[ -n $pod ]]; then
+    kubectl delete -n $1 pod $pod
+  fi
+}
+alias kdeletejobs="kubectl delete jobs --field-selector status.successful=1 && kubectl delete jobs --field-selector status.successful=0"
