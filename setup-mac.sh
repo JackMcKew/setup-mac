@@ -16,6 +16,10 @@ if read -q '?Setup GPG key (y/n)? '; then
 
   # read -p "Press [Enter] key after this and put your gpg into github"
   gpg --armor --export EXAMPLE
+
+  git config --global user.signingkey EXAMPLE
+  git config --global commit.gpgsign true
+  git config --global tag.gpgSign true
 fi
 
 echo "Installing xcode-stuff"
