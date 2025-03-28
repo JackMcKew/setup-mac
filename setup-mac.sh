@@ -20,6 +20,9 @@ if read -q '?Setup GPG key (y/n)? '; then
   git config --global user.signingkey EXAMPLE
   git config --global commit.gpgsign true
   git config --global tag.gpgSign true
+  brew install pinentry-mac
+  echo "pinentry-program $(which pinentry-mac)" >> ~/.gnupg/gpg-agent.conf
+  killall gpg-agent
 fi
 
 echo "Installing xcode-stuff"
