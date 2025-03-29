@@ -128,6 +128,9 @@ fi
 # For M1 macs
 brew install battery
 
+# No tunes
+brew install --cask notunes
+
 # For removing .DS_Store from all git
 defaults write com.apple.desktopservices DSDontWriteNetworkStores true
 echo .DS_Store >>~/.gitignore_global
